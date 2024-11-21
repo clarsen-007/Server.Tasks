@@ -42,7 +42,7 @@ if [[ "$@" == "-v" ]]
 fi
 
    ###   Pre Tasks
-   
+
    ###   End Pre Tasks
 
    ###   Application start
@@ -50,7 +50,7 @@ fi
 VERIFY_VERSION() {
 
    $( which wget ) $SCRIPTPATH -P $TEMPFOLDER/
-   
+
    if [[ "$VERSION" == "$( cat /tmp/task_scheduler.sh | grep 'VERSION=' | cut -d '=' -f2 | $( which tr ) -d '[:blank:]' )" ]]
      then
         echo -e " \n "
