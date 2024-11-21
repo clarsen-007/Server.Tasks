@@ -43,8 +43,6 @@ fi
 
    ###   Pre Tasks
    
-$( which wget ) $SCRIPTPATH -P $TEMPFOLDER/
-
    ###   End Pre Tasks
 
    ###   Application start
@@ -62,26 +60,12 @@ VERIFY_VERSION() {
         $( which chown ) root:root $APPFOLDER/task_scheduler.sh
         $( which chmod ) +x $APPFOLDER/task_scheduler.sh
         $APPFOLDER/task_scheduler.sh
-     else
    fi
 }
 
 VERIFY_VERSION
 
-if [[ "$@" == "-i $NETWORKNAME" ]]
-   then
-     IMPLEMENT_INSTALL
-     rm $MEMTEMP/sunserver.iptables.on.boot.txt
-     exit 0
-fi
-
-   ###   Application start
-
-   ###   No argument specified
-
-echo -e " \n "
-echo -e " -h for help "
-echo -e " \n "
+   ###   Application end
 
    ###   Cleanup
 
