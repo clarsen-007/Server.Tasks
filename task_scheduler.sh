@@ -8,6 +8,7 @@ VERSION=00.01.00.01
 TEMPFOLDER=/tmp
 MEMTEMP=/var/run
 LOG=/var/log
+SCRIPTPATH=https://raw.githubusercontent.com/clarsen-007/Server.Tasks/refs/heads/main/task_scheduler.sh
 
    ###   Arguments
 
@@ -39,6 +40,14 @@ if [[ "$@" == "-v" ]]
      exit 0
 fi
 
+   ###   Pre Tasks
+   
+$( which wget ) $SCRIPTPATH -P $TEMPFOLDER/
+
+   ###   End Pre Tasks
+
+   ###   Application start
+
 RESTART_APP() {
 
    if [[ "$VERSION" == "-v" ]]
@@ -48,9 +57,6 @@ RESTART_APP() {
         echo -e " \n "
         exit 0
    fi
-
-   ### End of IMPLEMENT_INSTALL
-
 }
 
 if [[ "$@" == "-i $NETWORKNAME" ]]
@@ -59,6 +65,8 @@ if [[ "$@" == "-i $NETWORKNAME" ]]
      rm $MEMTEMP/sunserver.iptables.on.boot.txt
      exit 0
 fi
+
+   ###   Application start
 
    ###   No argument specified
 
