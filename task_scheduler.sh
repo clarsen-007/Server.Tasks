@@ -7,6 +7,7 @@
 VERSION=00.01.00.01
 TEMPFOLDER=/tmp
 MEMTEMP=/var/run
+APPFOLDER=/opt/clstools/bin
 LOG=/var/log
 SCRIPTPATH=https://raw.githubusercontent.com/clarsen-007/Server.Tasks/refs/heads/main/task_scheduler.sh
 
@@ -48,16 +49,24 @@ $( which wget ) $SCRIPTPATH -P $TEMPFOLDER/
 
    ###   Application start
 
-RESTART_APP() {
+VERIFY_VERSION() {
 
-   if [[ "$VERSION" == "-v" ]]
+   $( which wget ) $SCRIPTPATH -P $TEMPFOLDER/
+   
+   if [[ "$VERSION" == "$( cat /tmp/task_scheduler.sh | grep 'VERSION=' | cut -d '=' -f2 | $( which tr ) -d '[:blank:]' )" ]]
      then
         echo -e " \n "
-        echo -e " Version is = $VERSION "
+        echo -e " Version is outdated...  Configuring new version."
         echo -e " \n "
-        exit 0
+        mv $TEMPFOLDER/task_scheduler.sh $APPFOLDER/
+        $( which chown ) root:root $APPFOLDER/task_scheduler.sh
+        $( which chmod ) +x $APPFOLDER/task_scheduler.sh
+        $APPFOLDER/task_scheduler.sh
+     else
    fi
 }
+
+VERIFY_VERSION
 
 if [[ "$@" == "-i $NETWORKNAME" ]]
    then
