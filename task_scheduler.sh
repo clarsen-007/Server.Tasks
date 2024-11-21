@@ -53,6 +53,7 @@ VERIFY_VERSION() {
 
    if [[ "$VERSION" == "$( cat /tmp/task_scheduler.sh | grep 'VERSION=' | cut -d '=' -f2 | grep -Ev '^$' | $( which tr ) -d '[:blank:]' )" ]]
      then
+     else
         echo -e " \n "
         echo -e " Version is outdated...  Configuring new version."
         echo -e " \n "
