@@ -51,7 +51,7 @@ VERIFY_VERSION() {
 
    $( which wget ) $SCRIPTPATH -P $TEMPFOLDER/
 
-   if [[ "$VERSION" == "$( cat /tmp/task_scheduler.sh | grep 'VERSION=' | cut -d '=' -f2 | $( which tr ) -d '[:blank:]' )" ]]
+   if [[ "$VERSION" == "$( cat /tmp/task_scheduler.sh | grep 'VERSION=' | cut -d '=' -f2 | grep -Ev '^$' | $( which tr ) -d '[:blank:]' )" ]]
      then
         echo -e " \n "
         echo -e " Version is outdated...  Configuring new version."
