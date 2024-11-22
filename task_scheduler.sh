@@ -44,9 +44,9 @@ if [[ $? -ne 0 ]]; then
     exit 1
 fi
 
-DOWNLOADED_VERSION=$(grep '^VERSION=' "$TEMPFOLDER/task_scheduler.sh" | cut -d '=' -f2 | | tr -d '.' | tr -d '[:blank:]')
+DOWNLOADED_VERSION=$(grep '^VERSION=' "$TEMPFOLDER/task_scheduler.sh" | cut -d '=' -f2 | tr -d '.' | tr -d '[:blank:]')
 
-if [[ "$( $VERSION | | tr -d '.' )" == "$DOWNLOADED_VERSION" ]]; then
+if [[ "$( $VERSION | tr -d '.' )" == "$DOWNLOADED_VERSION" ]]; then
     echo "Version is up to date."
 else
     echo -e "\nVersion is outdated... Configuring new version.\n"
