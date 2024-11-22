@@ -36,9 +36,7 @@ while getopts "i:hv" option; do
     esac
 done
 
-   ### Pre Tasks (Placeholder for any preparation steps)
-
-   ### Application start
+   ### Pre Tasks
 
 wget -q -O "$TEMPFOLDER/task_scheduler.sh" "$SCRIPTPATH"
 
@@ -65,9 +63,10 @@ else
     else
         echo "Update completed. Exiting."
     fi
-    exit 0
 fi
 
+   ### Application start
+   
    ### Cleanup
 
 rm -f "$TEMPFOLDER/task_scheduler.sh"
