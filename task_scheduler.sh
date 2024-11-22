@@ -59,7 +59,7 @@ fi
         $( which chmod ) +x $APPFOLDER/task_scheduler.sh
         $APPFOLDER/task_scheduler.sh
      else
-        echo-e " Version up to date. "
+        echo -e " Version up to date. "
    fi
 
    ###   Application end
