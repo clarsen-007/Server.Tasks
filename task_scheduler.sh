@@ -5,7 +5,6 @@
 # Variables
 VERSION="00.01.00.01"
 TEMPFOLDER="/tmp"
-MEMTEMP="/var/run"
 APPFOLDER="/opt/clstools/bin"
 LOG="/var/log"
 SCRIPTPATH="https://raw.githubusercontent.com/clarsen-007/Server.Tasks/refs/heads/main/task_scheduler.sh"
@@ -54,7 +53,15 @@ else
     mv "$TEMPFOLDER/task_scheduler.sh" "$APPFOLDER/"
     chown root:root "$APPFOLDER/task_scheduler.sh"
     chmod +x "$APPFOLDER/task_scheduler.sh"
-    "$APPFOLDER/task_scheduler.sh"
+    
+    # Check if we are already in the updated script
+    if [[ "$0" != "$APPFOLDER/task_scheduler.sh" ]]; then
+        echo "Running updated version..."
+        exec "$APPFOLDER/task_scheduler.sh" "$@"
+    else
+        echo "Update completed. Exiting."
+    fi
+    exit 0
 fi
 
 # Cleanup (Optional if you want to remove temp files)
