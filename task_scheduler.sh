@@ -22,7 +22,8 @@ SHOW_HELP() {
     exit 0
 }
 
-while getopts "i:hv" option; do
+while getopts "i:hv" option
+do
     case "${option}" in
         i) NETWORKNAME="${OPTARG}";;
         h) SHOW_HELP;;
@@ -40,7 +41,8 @@ done
 
 wget -q -O "$TEMPFOLDER/task_scheduler.sh" "$SCRIPTPATH"
 
-if [[ $? -ne 0 ]]; then
+if [[ $? -ne 0 ]]
+then
     echo "Error: Failed to download task_scheduler.sh from $SCRIPTPATH."
     exit 1
 fi
@@ -57,7 +59,8 @@ else
     chmod +x "$APPFOLDER/task_scheduler.sh"
 
     # Check if we are already in the updated script
-    if [[ "$0" != "$APPFOLDER/task_scheduler.sh" ]]; then
+    if [[ "$0" != "$APPFOLDER/task_scheduler.sh" ]]
+    then
         echo "Running updated version..."
         exec "$APPFOLDER/task_scheduler.sh" "$@"
     else
