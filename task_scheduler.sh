@@ -24,7 +24,7 @@ while getopts "i:hv" option; do
     case "${option}" in
         i) NETWORKNAME="${OPTARG}";;
         h) show_help;;
-        v) 
+        v)
             echo -e "\nVersion: $VERSION\n"
             exit 0
             ;;
@@ -53,7 +53,7 @@ else
     mv "$TEMPFOLDER/task_scheduler.sh" "$APPFOLDER/"
     chown root:root "$APPFOLDER/task_scheduler.sh"
     chmod +x "$APPFOLDER/task_scheduler.sh"
-    
+
     # Check if we are already in the updated script
     if [[ "$0" != "$APPFOLDER/task_scheduler.sh" ]]; then
         echo "Running updated version..."
