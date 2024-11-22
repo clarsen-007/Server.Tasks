@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 
-# This application starts, manages, and downloads an application to run general tasks.
+   ### This application starts, manages, and downloads an application to run general tasks.
 
-# Variables
-VERSION="00.01.00.01"
+   ### Variables
+
+VERSION="00.01.00.02"
 TEMPFOLDER="/tmp"
 APPFOLDER="/opt/clstools/bin"
 LOG="/var/log"
 SCRIPTPATH="https://raw.githubusercontent.com/clarsen-007/Server.Tasks/refs/heads/main/task_scheduler.sh"
 
-# Arguments
-show_help() {
+   ### Arguments
+
+SHOW_HELP() {
     echo -e "\nUsage: task_scheduler.sh [options]"
     echo -e "Options:"
     echo -e "  -h           Show help text"
@@ -23,7 +25,7 @@ show_help() {
 while getopts "i:hv" option; do
     case "${option}" in
         i) NETWORKNAME="${OPTARG}";;
-        h) show_help;;
+        h) SHOW_HELP;;
         v)
             echo -e "\nVersion: $VERSION\n"
             exit 0
@@ -34,9 +36,10 @@ while getopts "i:hv" option; do
     esac
 done
 
-# Pre Tasks (Placeholder for any preparation steps)
+   ### Pre Tasks (Placeholder for any preparation steps)
 
-# Application start
+   ### Application start
+
 wget -q -O "$TEMPFOLDER/task_scheduler.sh" "$SCRIPTPATH"
 
 if [[ $? -ne 0 ]]; then
@@ -65,7 +68,15 @@ else
     exit 0
 fi
 
-# Cleanup (Optional if you want to remove temp files)
+   ### Cleanup
+
 rm -f "$TEMPFOLDER/task_scheduler.sh"
 
 exit 0
+
+#######################
+## Version 00.01.00.01
+## Release.
+##
+## Version 00.01.00.02
+## Added auto upgrade of script to latest GitHub version.
